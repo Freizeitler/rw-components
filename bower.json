@@ -1,28 +1,9 @@
 {
-  "name": "FreizeitlerBoilerplate",
+  "name": "boilerplate",
+  "private": true,
   "version": "1.0.0",
-  "authors": [
-    "Henry Zeitler <henry@freizeitler.de>"
-  ],
-  "description": "My starting point",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "template/vendor",
-    "test",
-    "tests"
-  ],
   "dependencies": {
-    "jquery": "latest",
-    "jquery": "~1.10.2",
-    "modernizr": "latest",
-    "normalize-css": "latest",
-    "hammerjs": "latest",
-    "picturefill": "latest",
-    "jquery.lazyload": "latest",
-    "enquire": "latest",
-    "angular-latest": "latest"
+    "normalize-scss": "3.0.*",
+    "jquery": "1.*"
   }
 }
