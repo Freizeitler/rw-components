@@ -12,7 +12,7 @@
 	<!-- 1. Load platform support before any code that touches the DOM. -->
   <script src="vendor/bower/webcomponentsjs/webcomponents.min.js"></script>
   <!-- 2. Load the component using an HTML Import -->
-  <!--<link media="screen and (max-width: 767px)" rel="import" href="components/components320/mobile-navigation.html">
+  <!--Doesn't work: <link media="screen and (max-width: 767px)" rel="import" href="components/components320/mobile-navigation.html">
   <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">-->
 
   <script>
@@ -24,8 +24,9 @@
 		// Create link and settings
 		  var link = document.createElement('link');
 		  link.rel = 'import';
-			var navLink = link;
 
+		// Create Nav Elements
+			var navLink = link;
 			var navDesktopElement = document.createElement('main-navigation');
 			var navMobileElement = document.createElement('mobile-navigation');
 			navDesktopElement.id = 'NavElem';
@@ -51,12 +52,27 @@
 
 		// Init
   	window.addEventListener('load', matchComponent);
-		window.addEventListener('resize', function() {
-			// window.location.reload();
-			setTimeout(function() {
-			  matchComponent();
-			}, 100);
-		});
+
+  	// Triggering resize just once (http://davidwalsh.name/javascript-debounce-function)
+		var myEfficientFn = debounce(function() {
+			matchComponent();
+		}, 100);
+		function debounce(func, wait, immediate) {
+			var timeout;
+			return function() {
+				var context = this, args = arguments;
+				var later = function() {
+					timeout = null;
+					if (!immediate) func.apply(context, args);
+				};
+				var callNow = immediate && !timeout;
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+				if (callNow) func.apply(context, args);
+			};
+		};
+		// Resize Listener
+		window.addEventListener('resize', myEfficientFn);
   </script>
 
 	<style type="text/css">
