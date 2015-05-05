@@ -6,12 +6,39 @@
 			.navigation {
 				height: 200px;
 				width: 100%;
-				background: red;
-				color: #fff;
+			}
+			ul {
+				list-style-type: none;
+			}
+			.nav-item {
+				float: left;
+			}
+			a {
+				display: block;
+				padding: 5px 10px;
 			}
 		</style>
 		<div class="navigation">
-			<h1>Welcome {{subject}}</h1>
+			<!-- ul>li.nav-item*5>a[href="#" title="Navigation $"]{Navigation $} -->
+			<ul class="nav-first bv-cf">
+				<li class="nav-item"><a href="#" title="Navigation 1">Navigation 1</a></li>
+				<li class="nav-item"><a href="#" title="Navigation 2">Navigation 2</a>
+					<ul class="nav-sub">
+						<li class="nav-sub-item"><a href="#" title="Navigation 2.1">Navigation 2.1</a></li>
+						<li class="nav-sub-item"><a href="#" title="Navigation 2.2">Navigation 2.2</a></li>
+						<li class="nav-sub-item"><a href="#" title="Navigation 2.3">Navigation 2.3</a></li>
+					</ul>
+				</li>
+				<li class="nav-item"><a href="#" title="Navigation 3">Navigation 3</a>
+					<ul class="nav-sub">
+						<li class="nav-sub-item"><a href="#" title="Navigation 3.1">Navigation 3.1</a></li>
+						<li class="nav-sub-item"><a href="#" title="Navigation 3.2">Navigation 3.2</a></li>
+						<li class="nav-sub-item"><a href="#" title="Navigation 3.3">Navigation 3.3</a></li>
+					</ul>
+				</li>
+				<li class="nav-item"><a href="#" title="Navigation 4">Navigation 4</a></li>
+				<li class="nav-item"><a href="#" title="Navigation 5">Navigation 5</a></li>
+			</ul>
 		</div>
 	</template>
 	<script>
