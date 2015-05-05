@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title><!-- Title 50-60 characters --></title>
+	<title>RWD and Web Components</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,23 +16,33 @@
   <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">-->
 
   <script>
-  // Set Media Queries
-	  var isDesktop = window.matchMedia('(min-width: 640px)');
-	  var isMobile = window.matchMedia('(max-width: 640px)');
-
-	// Create link and settings
-	  var link = document.createElement('link');
-	  link.rel = 'import';
-		var navLink = link;
-
 	  function matchComponent () {
+		// Set Media Queries
+		  var isDesktop = window.matchMedia('(min-width: 640px)');
+		  var isMobile = window.matchMedia('(max-width: 640px)');
+
+		// Create link and settings
+		  var link = document.createElement('link');
+		  link.rel = 'import';
+			var navLink = link;
+
+			var navDesktopElement = document.createElement('main-navigation');
+			var navMobileElement = document.createElement('mobile-navigation');
+			navDesktopElement.id = 'NavElem';
+			navMobileElement.id = 'NavElem';
+			var navTarget = document.getElementById('NavElem');
+
 		  if (isMobile.matches) {
-				navLink.href = 'components/mobile-components/mobile-navigation.html';
+		  	navTarget.parentNode.removeChild(navTarget);
+				document.querySelector('.nav').appendChild(navMobileElement);
+
+				navLink.href = 'components/mobile-navigation.html';
 				navLink.id = 'navLink';
-				/*navLink.onload = function(e) {...};
-				navLink.onerror = function(e) {...};*/
 				document.head.appendChild(navLink);
 			} else {
+				navTarget.parentNode.removeChild(navTarget);
+				document.querySelector('.nav').appendChild(navDesktopElement);
+
 				navLink.href = 'components/main-navigation.html';
 				navLink.id = 'navLink';
 				document.head.appendChild(navLink);
@@ -42,7 +52,7 @@
 		// Init
   	window.addEventListener('load', matchComponent);
 		window.addEventListener('resize', function() {
-			window.location.reload();
+			// window.location.reload();
 			setTimeout(function() {
 			  matchComponent();
 			}, 100);
@@ -62,13 +72,17 @@
 <body>
 
 	<header class="header" role="banner"></header>
+
 	<nav class="nav" role="navigation">
-		<main-navigation></main-navigation>
+		<main-navigation id="NavElem"></main-navigation>
 	</nav>
+
 	<main role="main">
 		<h1>Lorem ipsum dolor.</h1>
 	</main>
+
 	<aside class="aside" role="complementary"></aside>
+
 	<footer class="footer" role="contentinfo"></footer>
 
 	<!-- Get customized modernizr from http://modernizr.com/download/ -->
