@@ -12,8 +12,36 @@
 	<!-- 1. Load platform support before any code that touches the DOM. -->
   <script src="vendor/bower/webcomponentsjs/webcomponents.min.js"></script>
   <!-- 2. Load the component using an HTML Import -->
-  <link media="screen and (max-width: 767px)" rel="import" href="components/components320/mobile-navigation.html">
-  <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">
+  <!--<link media="screen and (max-width: 767px)" rel="import" href="components/components320/mobile-navigation.html">
+  <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">-->
+
+  <script>
+	  var link = document.createElement('link');
+	  var isLarge = window.matchMedia('(min-width: 600px)');
+	  var isMedium = window.matchMedia('(min-width: 400px)');
+	  var isSmall = window.matchMedia('(max-width: 400px)');
+
+	  function matchComponent () {
+		  if (isSmall.matches) {
+				link.rel = 'import';
+				link.href = 'components/components320/mobile-navigation.html';
+				/*link.onload = function(e) {...};
+				link.onerror = function(e) {...};*/
+				document.head.appendChild(link);
+			} else if (isMedium.matches) {
+				link.rel = 'import';
+				link.href = 'components/components768/main-navigation.html';
+				document.head.appendChild(link);
+			} else {
+				link.rel = 'import';
+				link.href = 'components/components768/main-navigation.html';
+				document.head.appendChild(link);
+			}
+		}
+
+		window.addEventListener('resize', matchComponent);
+  	window.addEventListener('load', matchComponent);
+  </script>
 
 	<style type="text/css">
 		/* Above-The-Fold-Styles go here */
@@ -30,7 +58,6 @@
 	<header class="header" role="banner"></header>
 	<nav class="nav" role="navigation">
 		<main-navigation></main-navigation>
-		<mobile-navigation></mobile-navigation>
 	</nav>
 	<main role="main">
 		<h1>Lorem ipsum dolor.</h1>
