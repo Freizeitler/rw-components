@@ -1,0 +1,24 @@
+<link rel="import" href="../../vendor/bower/polymer/polymer.html">
+
+<polymer-element name="mobile-navigation">
+	<style type="text/css">
+			.navigation {
+				height: 200px;
+				width: 100%;
+				background: green;
+			}
+	</style>
+	<template>
+		<div class="navigation">
+			<h1>Welcome {{subject}}</h1>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			subject: 'Audience @320px',
+			ready: function() {
+				//...
+			}
+		});
+	</script>
+</polymer-element>

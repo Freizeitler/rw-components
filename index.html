@@ -10,10 +10,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- 1. Load platform support before any code that touches the DOM. -->
-  <script src="/vendor/bower/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="vendor/bower/webcomponentsjs/webcomponents.min.js"></script>
   <!-- 2. Load the component using an HTML Import -->
-  <link media="(min-width: 0)" rel="import" href="components320/navigation.html">
-  <link media="(min-width: 768px)" rel="import" href="components768/navigation.html">
+  <link media="screen and (max-width: 767px)" rel="import" href="components/components320/mobile-navigation.html">
+  <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">
 
 	<style type="text/css">
 		/* Above-The-Fold-Styles go here */
@@ -30,6 +30,7 @@
 	<header class="header" role="banner"></header>
 	<nav class="nav" role="navigation">
 		<main-navigation></main-navigation>
+		<mobile-navigation></mobile-navigation>
 	</nav>
 	<main role="main">
 		<h1>Lorem ipsum dolor.</h1>
