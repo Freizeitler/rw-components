@@ -27,6 +27,8 @@
 
 		// Create Nav Elements
 			var navLink = link;
+			navLink.id = 'navLink';
+			var linkTarget = document.getElementById('navLink');
 			var navDesktopElement = document.createElement('main-navigation');
 			var navMobileElement = document.createElement('mobile-navigation');
 			navDesktopElement.id = 'NavElem';
@@ -38,14 +40,18 @@
 				document.querySelector('.nav').appendChild(navMobileElement);
 
 				navLink.href = 'components/mobile-navigation.html';
-				navLink.id = 'navLink';
+				if (document.contains(linkTarget)) {
+					linkTarget.parentNode.removeChild(linkTarget);
+				}
 				document.head.appendChild(navLink);
 			} else {
 				navTarget.parentNode.removeChild(navTarget);
 				document.querySelector('.nav').appendChild(navDesktopElement);
 
 				navLink.href = 'components/main-navigation.html';
-				navLink.id = 'navLink';
+				if (document.contains(linkTarget)) {
+					linkTarget.parentNode.removeChild(linkTarget);
+				}
 				document.head.appendChild(navLink);
 			}
 		}
