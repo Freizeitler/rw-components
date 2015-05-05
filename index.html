@@ -16,34 +16,37 @@
   <link media="screen and (min-width: 768px)" rel="import" href="components/components768/main-navigation.html">-->
 
   <script>
+  // Set Media Queries
+	  var isDesktop = window.matchMedia('(min-width: 640px)');
+	  var isMobile = window.matchMedia('(max-width: 640px)');
+
+	// Create link and settings
 	  var link = document.createElement('link');
-	  var isDesktop = window.matchMedia('(min-width: 400px)');
-	  var isMobile = window.matchMedia('(max-width: 400px)');
+	  link.rel = 'import';
+		var navLink = link;
 
 	  function matchComponent () {
 		  if (isMobile.matches) {
-				link.rel = 'import';
-				link.href = 'components/components320/mobile-navigation.html';
-				link.id = 'navMobile';
-				/*link.onload = function(e) {...};
-				link.onerror = function(e) {...};*/
-				document.head.appendChild(link);
+				navLink.href = 'components/mobile-components/mobile-navigation.html';
+				navLink.id = 'navLink';
+				/*navLink.onload = function(e) {...};
+				navLink.onerror = function(e) {...};*/
+				document.head.appendChild(navLink);
 			} else {
-				link.rel = 'import';
-				link.href = 'components/components768/main-navigation.html';
-				link.id = 'navDesktop';
-				document.head.appendChild(link);
+				navLink.href = 'components/main-navigation.html';
+				navLink.id = 'navLink';
+				document.head.appendChild(navLink);
 			}
 		}
 
+		// Init
+  	window.addEventListener('load', matchComponent);
 		window.addEventListener('resize', function() {
 			window.location.reload();
 			setTimeout(function() {
 			  matchComponent();
 			}, 100);
-
 		});
-  	window.addEventListener('load', matchComponent);
   </script>
 
 	<style type="text/css">
