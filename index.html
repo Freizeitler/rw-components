@@ -17,29 +17,32 @@
 
   <script>
 	  var link = document.createElement('link');
-	  var isLarge = window.matchMedia('(min-width: 600px)');
-	  var isMedium = window.matchMedia('(min-width: 400px)');
-	  var isSmall = window.matchMedia('(max-width: 400px)');
+	  var isDesktop = window.matchMedia('(min-width: 400px)');
+	  var isMobile = window.matchMedia('(max-width: 400px)');
 
 	  function matchComponent () {
-		  if (isSmall.matches) {
+		  if (isMobile.matches) {
 				link.rel = 'import';
 				link.href = 'components/components320/mobile-navigation.html';
+				link.id = 'navMobile';
 				/*link.onload = function(e) {...};
 				link.onerror = function(e) {...};*/
-				document.head.appendChild(link);
-			} else if (isMedium.matches) {
-				link.rel = 'import';
-				link.href = 'components/components768/main-navigation.html';
 				document.head.appendChild(link);
 			} else {
 				link.rel = 'import';
 				link.href = 'components/components768/main-navigation.html';
+				link.id = 'navDesktop';
 				document.head.appendChild(link);
 			}
 		}
 
-		window.addEventListener('resize', matchComponent);
+		window.addEventListener('resize', function() {
+			window.location.reload();
+			setTimeout(function() {
+			  matchComponent();
+			}, 100);
+
+		});
   	window.addEventListener('load', matchComponent);
   </script>
 
